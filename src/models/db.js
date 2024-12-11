@@ -3,8 +3,17 @@ const mysql = require("mysql");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  //password: "Wg18509238",
+  password: "Wg18509238",
   database: "db_av",
+});
+
+// Conectar a la base de datos
+connection.connect((err) => {
+  if (err) {
+    console.error("Error al conectar a la base de datos: " + err.stack);
+    return;
+  }
+  console.log("Conectado a la base de datos como ID " + connection.threadId);
 });
 
 module.exports = connection;
