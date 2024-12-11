@@ -8,25 +8,18 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = [
-  "https://ventat.asistentevirtualsas.com",
-  "http://ventat.asistentevirtualsas.com",
-  "http://localhost:3000",
-];
+app.get("/", (req, res) => {
+  res.send("¡Hola, mundo!");
+});
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Permitir solicitudes sin origen (como las que se hacen desde Postman)
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("No permitido por CORS"));
-      }
-    },
-    methods: ["GET", "POST"],
+    origin: [process.env.ORIGIN],
+    methods: ["GET", "POST", "DELETE"],
   })
 );
+
+console.log(process.env.ORIGIN);
 
 app.use("/", routes);
 
