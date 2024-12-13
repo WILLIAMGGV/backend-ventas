@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const port = 3002;
+const port = 4000;
 const routes = require("./api/endPoints");
 const cors = require("cors");
 
@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.use(
   cors({
-    origin: [process.env.ORIGIN],
+    origin: [process.env.ORIGIN, process.env.ORIGIN2],
     methods: ["GET", "POST", "DELETE"],
   })
 );
